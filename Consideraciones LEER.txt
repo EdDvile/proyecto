@@ -1,0 +1,11 @@
+Consideraciones al momento de utilizar:
+La base de datos utilizada tiene el nombre de : "nitesthao_2022"
+Se agregaron las siguienter variables como variables de entorno:
+Puerto del servidor : "PORT"
+Key para generar JWT : "SECRETORPRIVATEKEY"
+Usuario base de datos :"USER"
+Password base de datos="PASSWORD"
+Servidor base de datos="SERVER"
+Base de datos "DATABASE"
+PUERTO base de datos "DBPORT"  
+Header requerido para el JWT :"HEADERJWT"      
