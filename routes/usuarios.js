@@ -11,39 +11,40 @@ const{usuariosgetall,
     insertaralumno,
     modificaralumno,
 } =require(`../controlador/usuarios`);
+const { antinombre, antiemail, anticiudad, antipais, antidardebaja, antiinsertar, antimodificar } = require('../middlewares/antiisql');
 const router = Router();
 
 
 
 
 router.get('/all',[validarjwt], usuariosgetall);
-router.get('/nombre',[validarjwt],[
+router.get('/nombre',[antinombre],[validarjwt],[
     check(`nombre`,`El nombre es obligatorio`).not().isEmpty(),
     check(`nombre`,`Valor hexadecimal`).not().isHexadecimal(),
     validarCampos
     ], usuariosgetnombre);
-router.get('/email',[validarjwt],[
+router.get('/email',[antiemail],[validarjwt],[
     check(`email`,`El Email es obligatorio`).not().isEmpty(),
     check(`email`,`Valor hexadecimal`).not().isHexadecimal(),
     validarCampos
     ], usuariosgetemail);
-router.get('/ciudad',[validarjwt],[
+router.get('/ciudad',[anticiudad],[validarjwt],[
     check(`ciudad`,`La ciudad es obligatoria`).not().isEmpty(),
     check(`ciudad`,`Valor hexadecimal`).not().isHexadecimal(),
     validarCampos
     ], usuariosgetciudad);
-router.get('/pais',[validarjwt],[
+router.get('/pais',[antipais],[validarjwt],[
     check(`pais`,`El pais es obligatorio`).not().isEmpty(),
     check(`pais`,`Valor hexadecimal`).not().isHexadecimal(),
     validarCampos
     ], usuariosgetpais);
-router.delete('/dardebaja',[validarjwt],[
+router.delete('/dardebaja',[antidardebaja],[validarjwt],[
     check(`id`,`El id es obligatorio`).not().isEmpty(),
     check(`id`,`El id es Numerico`).isNumeric(),
     
     validarCampos
     ], dardebaja);
-router.post('/insertar',[validarjwt],[
+router.post('/insertar',[antiinsertar],[validarjwt],[
     check(`nombres`,`El nombre es obligatorio`).not().isEmpty(),
     check(`nombres`,`Valor hexadecimal`).not().isHexadecimal(),
     check(`apellidopterno`,`El apellido paterno es obligatorio`).not().isEmpty(),
@@ -65,7 +66,7 @@ router.post('/insertar',[validarjwt],[
     check(`fechainscripcion`,`La fecha de inscripcion es en formato fecha`).isDate({format: 'YYYY-MM-DD'}),
     validarCampos
     ], insertaralumno);
-router.put('/modificar',[validarjwt],[
+router.put('/modificar',[antimodificar],[validarjwt],[
     check(`id`,`El id es obligatorio`).not().isEmpty(),
     check(`id`,`El id es Numerico`).isNumeric(),
     check(`columna`,`La columna es obligatoria`).not().isEmpty(),
